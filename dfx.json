@@ -1,0 +1,37 @@
+{
+  "canisters": {
+    "internet_identity": {
+      "candid": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity.did",
+      "frontend": {},
+      "remote": {
+        "id": {
+          "ic": "rdmx6-jaaaa-aaaaa-aaadq-cai"
+        }
+      },
+      "type": "custom",
+      "wasm": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity_dev.wasm.gz"
+    },
+    "re-cycle-backend": {
+      "main": "src/re-cycle-backend/main.mo",
+      "type": "motoko"
+    },
+    "re-cycle-frontend": {
+      "dependencies": [
+        "re-cycle-backend"
+      ],
+      "source": [
+        "src/re-cycle-frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "re-cycle-frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
