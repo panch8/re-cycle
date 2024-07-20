@@ -1,30 +1,86 @@
 import { useState } from 'react';
-import { re_cycle_backend } from 'declarations/re-cycle-backend';
+import { Button } from 'primereact/button';
+import { InputText } from 'primereact/inputtext';
+import { FloatLabel } from 'primereact/floatlabel';
+import { getControlledCanisters } from './utils/icApiSwagger';
+import Table from './components/Table';
+// import { re_cycle } from '../../declarations/re-cycle';
+
+const subject = {
+  principalCaller: "acvcd-vgg3o-qftqn-7apsp-hm3gc-j5qza-u7kcz-2q6jn-3a5hu-iucqw-tae",
+  controlledCanisterList: [
+    {
+      canister_id: "2a2b2-xiaaa-aaaao-ajlkq-cai",
+      controllers: [
+        "fkvrp-syaaa-aaaao-aiajq-cai",
+        "acvcd-vgg3o-qftqn-7apsp-hm3gc-j5qza-u7kcz-2q6jn-3a5hu-iucqw-tae"
+      ],
+      enabled: true,
+      id: 89134,
+      module_hash: "db07e7e24f6f8ddf53c33a610713259a7c1eb71c270b819ebd311e2d223267f0",
+      name: "",
+      subnet_id: "o3ow2-2ipam-6fcjo-3j5vt-fzbge-2g7my-5fz2m-p4o2t-dwlc4-gt2q7-5ae",
+      updated_at: "2024-07-12T09:22:28.626783",
+      upgrades: null
+    },
+    {
+      canister_id: "2c2ea-6yaaa-aaaao-ajhgq-cai",
+      controllers: [
+        "fkvrp-syaaa-aaaao-aiajq-cai",
+        "acvcd-vgg3o-qftqn-7apsp-hm3gc-j5qza-u7kcz-2q6jn-3a5hu-iucqw-tae"
+      ],
+      enabled: true,
+      id: 77250,
+      module_hash: "c3445df9b29e39dc06bb3ed2a6f6dbeb549e0dade595f4e2d5cc191bfad65350",
+      name: "",
+      subnet_id: "o3ow2-2ipam-6fcjo-3j5vt-fzbge-2g7my-5fz2m-p4o2t-dwlc4-gt2q7-5ae",
+      updated_at: "2024-05-12T01:26:26.605217",
+      upgrades: null
+    },
+  ],
+
+
+}
 
 function App() {
-  const [greeting, setGreeting] = useState('');
+  const [requestedPrincipal, setRequestedPrincipal] = useState('');
+  const [controlledCanisters, setControlledCanisters] = useState([]);
+  const [globalCanistersTotal, setGlobalCanistersTotal] = useState(0);
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    const name = event.target.elements.name.value;
-    re_cycle_backend.greet(name).then((greeting) => {
-      setGreeting(greeting);
-    });
-    return false;
-  }
+
+  const handleClick = async () => {
+    // const response = await re_cycle.greet("mate");
+    const print = `The requested Principal id is: ${requestedPrincipal}`
+    const response = await getControlledCanisters(requestedPrincipal);
+    console.log(print);
+    console.log(response);
+
+    //MAKE BETTER handleing varius responses in batches. and concat them. 
+    setControlledCanisters(response.data);
+    setGlobalCanistersTotal(response.total_canisters)
+  };
 
   return (
-    <main>
-      <img src="/logo2.svg" alt="DFINITY logo" />
-      <br />
-      <br />
-      <form action="#" onSubmit={handleSubmit}>
-        <label htmlFor="name">Enter your name: &nbsp;</label>
-        <input id="name" alt="Name" type="text" />
-        <button type="submit">Click Me!</button>
-      </form>
-      <section id="greeting">{greeting}</section>
-    </main>
+    <div className='card text-center'>
+      <img src="favicon.ico" alt="logo-dfinity" width={100} />
+      <div className='card-title'>
+        <img src='worldRecycle.jpeg' width="20%" alt='re-cycle-logo' />
+      </div>
+      <div>
+        <div className='card flex justify-content-center '>
+          <FloatLabel className="mt-4 ">
+            <InputText id="requestedPrincipal" value={requestedPrincipal} width="100%" onChange={(e) => setRequestedPrincipal(e.target.value)} />
+            <label htmlFor="requestedPrincipal">Principal Identifier </label>
+            <Button label="Submit" onClick={handleClick} className="btn-submit" severity="success" text raised icon="pi pi-check" iconPos="right" />
+          </FloatLabel>
+        </div>
+        <small id="requestedPrincipal-info" >
+          Enter the Principal ID to check its controlled canisters and list them.
+        </small>
+      </div>
+      {controlledCanisters.length > 0
+        && <Table controlledCanisters={controlledCanisters} globalCanistersTotal={globalCanistersTotal} />}
+    </div >
   );
 }
 

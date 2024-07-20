@@ -11,13 +11,13 @@
       "type": "custom",
       "wasm": "https://github.com/dfinity/internet-identity/releases/latest/download/internet_identity_dev.wasm.gz"
     },
-    "re-cycle-backend": {
-      "main": "src/re-cycle-backend/main.mo",
+    "re-cycle": {
+      "main": "src/re-cycle/main.mo",
       "type": "motoko"
     },
     "re-cycle-frontend": {
       "dependencies": [
-        "re-cycle-backend"
+        "re-cycle"
       ],
       "source": [
         "src/re-cycle-frontend/dist"
