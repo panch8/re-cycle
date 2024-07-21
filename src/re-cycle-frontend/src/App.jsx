@@ -6,41 +6,41 @@ import { getControlledCanisters } from './utils/icApiSwagger';
 import Table from './components/Table';
 // import { re_cycle } from '../../declarations/re-cycle';
 
-const subject = {
-  principalCaller: "acvcd-vgg3o-qftqn-7apsp-hm3gc-j5qza-u7kcz-2q6jn-3a5hu-iucqw-tae",
-  controlledCanisterList: [
-    {
-      canister_id: "2a2b2-xiaaa-aaaao-ajlkq-cai",
-      controllers: [
-        "fkvrp-syaaa-aaaao-aiajq-cai",
-        "acvcd-vgg3o-qftqn-7apsp-hm3gc-j5qza-u7kcz-2q6jn-3a5hu-iucqw-tae"
-      ],
-      enabled: true,
-      id: 89134,
-      module_hash: "db07e7e24f6f8ddf53c33a610713259a7c1eb71c270b819ebd311e2d223267f0",
-      name: "",
-      subnet_id: "o3ow2-2ipam-6fcjo-3j5vt-fzbge-2g7my-5fz2m-p4o2t-dwlc4-gt2q7-5ae",
-      updated_at: "2024-07-12T09:22:28.626783",
-      upgrades: null
-    },
-    {
-      canister_id: "2c2ea-6yaaa-aaaao-ajhgq-cai",
-      controllers: [
-        "fkvrp-syaaa-aaaao-aiajq-cai",
-        "acvcd-vgg3o-qftqn-7apsp-hm3gc-j5qza-u7kcz-2q6jn-3a5hu-iucqw-tae"
-      ],
-      enabled: true,
-      id: 77250,
-      module_hash: "c3445df9b29e39dc06bb3ed2a6f6dbeb549e0dade595f4e2d5cc191bfad65350",
-      name: "",
-      subnet_id: "o3ow2-2ipam-6fcjo-3j5vt-fzbge-2g7my-5fz2m-p4o2t-dwlc4-gt2q7-5ae",
-      updated_at: "2024-05-12T01:26:26.605217",
-      upgrades: null
-    },
-  ],
+// const subject = {
+//   principalCaller: "acvcd-vgg3o-qftqn-7apsp-hm3gc-j5qza-u7kcz-2q6jn-3a5hu-iucqw-tae",
+//   controlledCanisterList: [
+//     {
+//       canister_id: "2a2b2-xiaaa-aaaao-ajlkq-cai",
+//       controllers: [
+//         "fkvrp-syaaa-aaaao-aiajq-cai",
+//         "acvcd-vgg3o-qftqn-7apsp-hm3gc-j5qza-u7kcz-2q6jn-3a5hu-iucqw-tae"
+//       ],
+//       enabled: true,
+//       id: 89134,
+//       module_hash: "db07e7e24f6f8ddf53c33a610713259a7c1eb71c270b819ebd311e2d223267f0",
+//       name: "",
+//       subnet_id: "o3ow2-2ipam-6fcjo-3j5vt-fzbge-2g7my-5fz2m-p4o2t-dwlc4-gt2q7-5ae",
+//       updated_at: "2024-07-12T09:22:28.626783",
+//       upgrades: null
+//     },
+//     {
+//       canister_id: "2c2ea-6yaaa-aaaao-ajhgq-cai",
+//       controllers: [
+//         "fkvrp-syaaa-aaaao-aiajq-cai",
+//         "acvcd-vgg3o-qftqn-7apsp-hm3gc-j5qza-u7kcz-2q6jn-3a5hu-iucqw-tae"
+//       ],
+//       enabled: true,
+//       id: 77250,
+//       module_hash: "c3445df9b29e39dc06bb3ed2a6f6dbeb549e0dade595f4e2d5cc191bfad65350",
+//       name: "",
+//       subnet_id: "o3ow2-2ipam-6fcjo-3j5vt-fzbge-2g7my-5fz2m-p4o2t-dwlc4-gt2q7-5ae",
+//       updated_at: "2024-05-12T01:26:26.605217",
+//       upgrades: null
+//     },
+//   ],
 
 
-}
+// }
 
 function App() {
   const [requestedPrincipal, setRequestedPrincipal] = useState('');
@@ -64,7 +64,7 @@ function App() {
     <div className='card text-center'>
       <img src="favicon.ico" alt="logo-dfinity" width={100} />
       <div className='card-title'>
-        <img src='worldRecycle.jpeg' width="20%" alt='re-cycle-logo' />
+        <img src='worldRecycle2.jpeg' width="20%" alt='re-cycle-logo' />
       </div>
       <div>
         <div className='card flex justify-content-center '>
