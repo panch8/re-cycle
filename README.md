@@ -29,7 +29,7 @@ The immediate next step is to test a pattern to enable a frontend environment fo
 ### Pattern Idea
 As a developer, you have access to different identities such as DFX identities and Internet Identity, often using multiple identities to access controller admin methods. The idea is to use an Internet Identity to log in within a frontend, requiring just one command line interaction: granting the blackholed backend canister ID and the user-logged principal as new controllers of the wallet canister. After this, every interaction should occur in the frontend.
 
-![docs/img/theScene1.png](fig. 1)
+![fig. 1 The Scene](docs/img/theScene1.png)
 
 
 ### Workflow
@@ -50,3 +50,5 @@ As a developer, you have access to different identities such as DFX identities a
 6. Instantiating and Triggering Deletion: Once the checks are complete, the backend instantiates the wallet and triggers the deletion method.
 
 7. Wallet Upgrade: The wallet should be upgraded to include a deleteCanister method to facilitate this process.
+
+![fig.2 The secuence](docs/img/PotentialSolutionProcedure.png)
