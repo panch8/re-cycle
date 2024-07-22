@@ -24,7 +24,9 @@ actor {
     //if the arguments are not equal then is assumed a walletID is being passed or a sort of orchestrator canister compliant with a certain, not defined, standard. with an updated interface including stopAndDeleteCanister(canisterID) methods. 
     if(not Principal.equal(canisterId, walletId)){
       
-      // get controller list of walletID
+  
+      // In this approach a wallet canister is assumed to be upgraded to a version that provides a stop_canister and delete_canister methods.
+
       let userWalletCanister = actor(Principal.toText(walletId)): actor{
         get_controllers: () -> async ([Principal]) ;
         stop_canister: (canisterId: Principal) -> async ();
@@ -53,7 +55,7 @@ actor {
         //stop and delete canister 
         await userWalletCanister.stop_canister(canisterId);
 
-        // await userWalletCanister.delete_canister(canisterId);
+        await userWalletCanister.delete_canister(canisterId);
 
         return "Canister deleted" # controllerString;
       }
@@ -62,6 +64,10 @@ actor {
         return Error.message(err);
       };
     } else {
+      ////////////////////////////////////////////////////////////
+      ////////////////////////////////////////////////////////////
+    
+
       //if the arguments are equal then is assumed that is an end canister to be deleted not an orchestrator such as a cycles wallet canister
       //the flow diverges a bit but this approach allows the Proof of concept feature to be implemented in a more general way.
 

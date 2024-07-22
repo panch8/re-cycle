@@ -19,12 +19,19 @@ The idea behind Recycle is to create an open service, ideally as an online servi
 
 This repo provides a "manual" alpha version of the POC, with a copy-and-paste command solution for the terminal. The goal is to create a handy interface that will help gather community feedback. 
 
+## The Solution
+
+[Re-Cycle site](https://4wqjr-5iaaa-aaaas-aabfa-cai.icp0.io/)
+
+Alpha --> a web service to list every canister controlled by a Principal and provide ready to use commands. 
+Beta --> upgraded to frontend execution of admin funcs. 
 
 
 ## Road-Map and next steps. 
 
 ## Mirrored Canister Administration Pattern
 The immediate next step is to test a pattern to enable a frontend environment for the execution of third-party canister admin methods.
+
 
 ### Pattern Idea
 As a developer, you have access to different identities such as DFX identities and Internet Identity, often using multiple identities to access controller admin methods. The idea is to use an Internet Identity to log in within a frontend, requiring just one command line interaction: granting the blackholed backend canister ID and the user-logged principal as new controllers of the wallet canister. After this, every interaction should occur in the frontend.
@@ -52,3 +59,7 @@ As a developer, you have access to different identities such as DFX identities a
 7. Wallet Upgrade: The wallet should be upgraded to include a deleteCanister method to facilitate this process.
 
 ![fig.2 The secuence](docs/img/PotentialSolutionProcedure.png)
+
+
+
+This Workflow has been tested for specific end-canisters with good results in a local replica, end-canister meaning deleting a specific canister

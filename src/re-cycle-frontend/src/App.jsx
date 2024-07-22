@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { FloatLabel } from 'primereact/floatlabel';
 import { getControlledCanisters } from './utils/icApiSwagger';
 import Table from './components/Table';
+import { useAuthClient } from './utils/hooks.';
+import { Principal } from '@dfinity/principal';
+
 // import { re_cycle } from '../../declarations/re-cycle';
 
 // const subject = {
@@ -46,12 +49,21 @@ function App() {
   const [requestedPrincipal, setRequestedPrincipal] = useState('');
   const [controlledCanisters, setControlledCanisters] = useState([]);
   const [globalCanistersTotal, setGlobalCanistersTotal] = useState(0);
+  const { actor, signOut, signIn, userLogged } = useAuthClient();
 
 
+  const handleLogClick = () => {
+    if (userLogged) {
+      signOut();
+    } else {
+      signIn();
+    }
+  };
   const handleClick = async () => {
     // const response = await re_cycle.greet("mate");
     const print = `The requested Principal id is: ${requestedPrincipal}`
     const response = await getControlledCanisters(requestedPrincipal);
+
     console.log(print);
     console.log(response);
 
@@ -60,27 +72,34 @@ function App() {
     setGlobalCanistersTotal(response.total_canisters)
   };
 
+
+
   return (
-    <div className='card text-center'>
-      <img src="favicon.ico" alt="logo-dfinity" width={100} />
-      <div className='card-title'>
-        <img src='worldRecycle2.jpeg' width="20%" alt='re-cycle-logo' />
+    <>
+      <div className="justify-content-between mr-3 mt-2">
+        {/* <img src="favicon.ico" alt="logo-dfinity" width={80} /> */}
+        <Button label={`${userLogged ? "Sign Out" : "Sign In"}`} onClick={handleLogClick} className="btn-sign-in" severity="success" raised icon="pi pi-user" iconPos="right" />
       </div>
-      <div>
-        <div className='card flex justify-content-center '>
-          <FloatLabel className="mt-4 ">
-            <InputText id="requestedPrincipal" value={requestedPrincipal} width="100%" onChange={(e) => setRequestedPrincipal(e.target.value)} />
-            <label htmlFor="requestedPrincipal">Principal Identifier </label>
-            <Button label="Submit" onClick={handleClick} className="btn-submit" severity="success" text raised icon="pi pi-check" iconPos="right" />
-          </FloatLabel>
+      <div className='card text-center'>
+        <div className='card-title'>
+          <img src='worldRecycle2.jpeg' width="20%" alt='re-cycle-logo' />
         </div>
-        <small id="requestedPrincipal-info" >
-          Enter the Principal ID to check its controlled canisters and list them.
-        </small>
-      </div>
-      {controlledCanisters.length > 0
-        && <Table controlledCanisters={controlledCanisters} globalCanistersTotal={globalCanistersTotal} />}
-    </div >
+        <div>
+          <div className='card flex justify-content-center '>
+            <FloatLabel className="mt-4 ">
+              <InputText id="requestedPrincipal" value={requestedPrincipal} width="100%" onChange={(e) => setRequestedPrincipal(e.target.value)} />
+              <label htmlFor="requestedPrincipal">Principal Identifier </label>
+              <Button label="Submit" onClick={handleClick} className="btn-submit" severity="success" text raised icon="pi pi-check" iconPos="right" />
+            </FloatLabel>
+          </div>
+          <small id="requestedPrincipal-info" >
+            Enter the Principal ID to check its controlled canisters and list them.
+          </small>
+        </div>
+        {controlledCanisters.length > 0
+          && <Table controlledCanisters={controlledCanisters} globalCanistersTotal={globalCanistersTotal} />}
+      </div >
+    </>
   );
 }
 
