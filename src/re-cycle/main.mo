@@ -1,4 +1,4 @@
-import Debug "mo:base/Debug";
+// import Debug "mo:base/Debug";
 import Text "mo:base/Text";
 import Principal "mo:base/Principal";
 import Buffer "mo:base/Buffer";

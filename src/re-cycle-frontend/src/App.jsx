@@ -76,13 +76,13 @@ function App() {
 
   return (
     <>
-      <div className="justify-content-between mr-3 mt-2">
-        {/* <img src="favicon.ico" alt="logo-dfinity" width={80} /> */}
-        <Button label={`${userLogged ? "Sign Out" : "Sign In"}`} onClick={handleLogClick} className="btn-sign-in" severity="success" raised icon="pi pi-user" iconPos="right" />
-      </div>
+      {/* <div className="justify-content-between mr-3 mt-2"> */}
+      {/* <img src="favicon.ico" alt="logo-dfinity" width={80} /> */}
+      {/* <Button label={`${userLogged ? "Sign Out" : "Sign In"}`} onClick={handleLogClick} className="btn-sign-in" severity="success" raised icon="pi pi-user" iconPos="right" /> */}
+      {/* </div> */}
       <div className='card text-center'>
         <div className='card-title'>
-          <img src='worldRecycle2.jpeg' width="20%" alt='re-cycle-logo' />
+          <img src='worldRecycle2Large.jpeg' width="20%" alt='re-cycle-logo' />
         </div>
         <div>
           <div className='card flex justify-content-center '>
